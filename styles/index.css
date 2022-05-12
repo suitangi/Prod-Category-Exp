@@ -1,0 +1,149 @@
+body {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  /* overflow-y: hidden; */
+}
+
+#menuBar {
+  top: 15%;
+  background-color: #333;
+  position: absolute;
+  width: 99%;
+}
+
+.level0 {
+  float: left;
+  font-size: 16px;
+  color: white;
+  padding: 14px 16px;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.level0:hover {
+  background: #555;
+}
+
+.level1 {
+  padding: 10px 5px 5px 10px;
+  text-align: center;
+  position: relative;
+}
+
+.level1:hover {
+      background: #67efe9;
+}
+
+.level2 {
+  padding: 10px 5px 5px 10px;
+  text-align: center;
+}
+
+.level2:hover{
+  background: #67efe9;
+}
+
+.menu0 {
+  position: absolute;
+  color: #222;
+  background: #aaa;
+  width: 150px;
+  top: 100%;
+  left: 0%;
+}
+
+.menu1 {
+  position: absolute;
+  color: #222;
+  left: 100%;
+  top: 0%;
+  background: #e1e1e1;
+  width: 120px;
+}
+
+.centerText {
+  position: relative;
+  top: 50%;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.textAnswer {
+  display: block;
+  width: 80%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  margin-top: 12px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.radioContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radioContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radioContainer .radioOther {
+  opacity: 1 !important;
+  cursor: text !important;
+  margin-left: 4px;
+}
+
+.checkmark {
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.radioContainer:hover input~.checkmark {
+  background-color: #ccc;
+}
+
+.radioContainer input:checked~.checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radioContainer input:checked~.checkmark:after {
+  display: block;
+}
+
+.radioContainer .checkmark:after {
+  top: 6px;
+  left: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: white;
+}
