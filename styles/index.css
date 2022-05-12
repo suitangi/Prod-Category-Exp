@@ -1,6 +1,46 @@
 body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  /* overflow-y: hidden; */
+  overflow-y: hidden;
+}
+
+#productArea {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, 200px);
+  width: 99%;
+  top: calc(15% + 60px);
+  height: 75%;
+  left: 1%;
+  position: absolute;
+  overflow-y: auto;
+}
+
+.productCard {
+  height: 200px;
+  /* border: solid 1px; */
+  text-align: center;
+  padding: 1px;
+  background: #ccc;
+  opacity: 1;
+  transition: opacity .7s;
+  transition: background .7s;
+  border-radius: 15px;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 40px;
+}
+
+.productCard:hover {
+  opacity: 0.8;
+  background: #aaa;
+}
+
+.productCard img {
+  width: 100%;
+  border-radius: 15px 15px 0px 0px;
+  height: 165px;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 #menuBar {
@@ -8,6 +48,7 @@ body {
   background-color: #333;
   position: absolute;
   width: 99%;
+  z-index: 50;
 }
 
 .level0 {
@@ -33,7 +74,7 @@ body {
 }
 
 .level1:hover {
-      background: #67efe9;
+  background: #67efe9;
 }
 
 .level2 {
@@ -41,7 +82,7 @@ body {
   text-align: center;
 }
 
-.level2:hover{
+.level2:hover {
   background: #67efe9;
 }
 

@@ -416,13 +416,15 @@ function startTrial() {
   let el, newDiv, newText;
   let menuBar = document.getElementById('menuBar');
 
-  setUpLinks(window.expParam.menu, menuBar, 0);
+  window.products = {};
+
+  setUpLinks(window.expParam.menu, menuBar, 0, '');
 
   document.addEventListener('click', function() {
     clearMenus();
   });
 
-  function setUpLinks(menuObj, div, level) {
+  function setUpLinks(menuObj, div, level, id) {
     let nd, nt, tmp;
 
     for (var i = 0; i < menuObj.list.length; i++) {
@@ -446,17 +448,30 @@ function startTrial() {
             tmp = tmp.parentElement;
           }
         });
-        setUpLinks(menuObj.list[i], nd2, level + 1);
+        setUpLinks(menuObj.list[i], nd2, level + 1, id + '-' + i);
       } else {
+        window.products[id + '-' + i] = menuObj.list[i].products;
+        nd.setAttribute('data-id', id + '-' + i);
         nd.addEventListener('click', function(e) {
           e.stopPropagation();
-          console.log(this.innerText);
+          setupProducts(this.getAttribute('data-id'));
           clearMenus();
         })
       }
       div.appendChild(nd);
     }
   }
+}
+
+function setupProducts(id) {
+  let li = window.products[id];
+  let html = '';
+  for (var i = 0; i < li.length; i++) {
+    html += '<div class="productCard">' +
+      '<img src="' + li[i].img + '">' +
+      li[i].desc + '</div>';
+  }
+  document.getElementById('productArea').innerHTML = html;
 }
 
 function clearMenus() {

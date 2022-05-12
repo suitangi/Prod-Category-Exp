@@ -1,6 +1,5 @@
 window.expParam = {
 
-
   menu: {
     list: [{
       title: 'Item A',
@@ -10,26 +9,116 @@ window.expParam = {
           title: 'Item AAA',
           products: [
             {
-              img: "",
-              desc: ""
+              img: "./img/orange.png",
+              desc: "Orange"
+            }, {
+              img: "./img/pink.png",
+              desc: "pink"
+            }, {
+              img: "./img/orange.png",
+              desc: "Orange"
+            }, {
+              img: "./img/pink.png",
+              desc: "pink"
+            }, {
+              img: "./img/orange.png",
+              desc: "Orange"
+            }, {
+              img: "./img/pink.png",
+              desc: "pink"
+            }, {
+              img: "./img/purple.png",
+              desc: "purple"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }, {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/green.png",
+              desc: "green"
+            }, {
+              img: "./img/orange.png",
+              desc: "Orange"
+            }, {
+              img: "./img/pink.png",
+              desc: "pink"
+            }, {
+              img: "./img/purple.png",
+              desc: "purple"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }, {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/green.png",
+              desc: "green"
             }
           ]
         }, {
-          title: 'Item AAB'
+          title: 'Item AAB',
+          products: [
+            {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/purple.png",
+              desc: "purple"
+            }
+          ]
         }]
       }, {
         title: 'Item AB',
         list: [{
-          title: 'Item ABA'
+          title: 'Item ABA',
+          products: [
+            {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/purple.png",
+              desc: "purple"
+            }
+          ]
         }, {
-          title: 'Item ABB'
+          title: 'Item ABB',
+          products: [
+            {
+              img: "./img/yellow.png",
+              desc: "yellow"
+            }, {
+              img: "./img/purple.png",
+              desc: "purple"
+            }
+          ]
         }]
       }, {
         title: 'Item AC',
         list: [{
-          title: 'Item ACA'
+          title: 'Item ACA',
+          products: [
+            {
+              img: "./img/yellow.png",
+              desc: "yellow"
+            }, {
+              img: "./img/orange.png",
+              desc: "orange"
+            }
+          ]
         }, {
-          title: 'Item ACB'
+          title: 'Item ACB',
+          products: [
+            {
+              img: "./img/yellow.png",
+              desc: "yellow"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }
+          ]
         }]
       }]
 
@@ -38,23 +127,58 @@ window.expParam = {
       list: [{
         title: 'Item BA',
         list: [{
-          title: 'Item BAA'
+          title: 'Item BAA',
+          products: [
+            {
+              img: "./img/purple.png",
+              desc: "purple"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }
+          ]
         }, {
-          title: 'Item BAB'
+          title: 'Item BAB',
+          products: [
+            {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }
+          ]
         }]
       }, {
         title: 'Item BB',
         list: [{
-          title: 'Item BBA'
+          title: 'Item BBA',
+          products: [
+            {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/green.png",
+              desc: "green"
+            }
+          ]
         }, {
-          title: 'Item BBB'
-        }]
-      }, {
-        title: 'Item BC',
-        list: [{
-          title: 'Item BCA'
-        }, {
-          title: 'Item BCB'
+          title: 'Item BBB',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/green.png",
+              desc: "green"
+            }, {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/green.png",
+              desc: "green"
+            }
+          ]
         }]
       }]
     }, {
@@ -62,23 +186,77 @@ window.expParam = {
       list: [{
         title: 'Item CA',
         list: [{
-          title: 'Item CAA'
+          title: 'Item CAA',
+          products: [
+            {
+              img: "./img/purple.png",
+              desc: "purple"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }
+          ]
         }, {
-          title: 'Item CAB'
+          title: 'Item CAB',
+          products: [
+            {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }
+          ]
         }]
       }, {
         title: 'Item CB',
         list: [{
-          title: 'Item CBA'
+          title: 'Item CBA',
+          products: [
+            {
+              img: "./img/blue.png",
+              desc: "blue"
+            }, {
+              img: "./img/green.png",
+              desc: "green"
+            }
+          ]
         }, {
-          title: 'Item CBB'
+          title: 'Item CBB',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/green.png",
+              desc: "green"
+            }
+          ]
         }]
       }, {
         title: 'Item C',
         list: [{
-          title: 'Item CCA'
+          title: 'Item CCA',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/blue.png",
+              desc: "blue"
+            }
+          ]
         }, {
-          title: 'Item CCB'
+          title: 'Item CCB',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/yellow.png",
+              desc: "yellow"
+            }
+          ]
         }]
       }]
     }, {
@@ -86,23 +264,77 @@ window.expParam = {
       list: [{
         title: 'Item DA',
         list: [{
-          title: 'Item DAA'
+          title: 'Item DAA',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/blue.png",
+              desc: "blue"
+            }
+          ]
         }, {
-          title: 'Item DAB'
+          title: 'Item DAB',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/yellow.png",
+              desc: "yellow"
+            }
+          ]
         }]
       }, {
         title: 'Item DB',
         list: [{
-          title: 'Item DBA'
+          title: 'Item DBA',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/purple.png",
+              desc: "purple"
+            }
+          ]
         }, {
-          title: 'Item DBB'
+          title: 'Item DBB',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/red.png",
+              desc: "red"
+            }
+          ]
         }]
       }, {
         title: 'Item DC',
         list: [{
-          title: 'Item DCA'
+          title: 'Item DCA',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/yellow.png",
+              desc: "yellow"
+            }
+          ]
         }, {
-          title: 'Item DCB'
+          title: 'Item DCB',
+          products: [
+            {
+              img: "./img/indigo.png",
+              desc: "indigo"
+            }, {
+              img: "./img/purple.png",
+              desc: "purple"
+            }
+          ]
         }]
       }]
     }]
