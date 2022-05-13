@@ -418,13 +418,14 @@ function startTrial() {
 
   window.products = {};
 
-  setUpLinks(window.expParam.menu, menuBar, 0, '');
+  setUpLinks(window.expParam.menu, menuBar, 0, '', []);
 
   document.addEventListener('click', function() {
     clearMenus();
   });
 
-  function setUpLinks(menuObj, div, level, id) {
+  //this is a mess: don't look at this don't think about it, it works
+  function setUpLinks(menuObj, div, level, id, all) {
     let nd, nt, tmp;
 
     for (var i = 0; i < menuObj.list.length; i++) {
@@ -433,13 +434,13 @@ function startTrial() {
       nd.classList.add('level' + level);
       nt = document.createTextNode(menuObj.list[i].title);
       nd.appendChild(nt);
+      let allList = [];
       if (menuObj.list[i].list !== undefined) {
         nd2 = document.createElement('div');
         nd.appendChild(nd2);
         nd2.style = "display: none;";
         nd2.classList.add('menu' + level);
         nd.addEventListener('click', function(e) {
-          //console.log(this);
           e.stopPropagation();
           clearMenus();
           tmp = this.firstElementChild;
@@ -448,18 +449,38 @@ function startTrial() {
             tmp = tmp.parentElement;
           }
         });
-        setUpLinks(menuObj.list[i], nd2, level + 1, id + '-' + i);
+        setUpLinks(menuObj.list[i], nd2, level + 1, id + '-' + i, allList);
+
+
       } else {
         window.products[id + '-' + i] = menuObj.list[i].products;
         nd.setAttribute('data-id', id + '-' + i);
+        allList.push(id + '-' + i);
         nd.addEventListener('click', function(e) {
           e.stopPropagation();
           setupProducts(this.getAttribute('data-id'));
           clearMenus();
         })
       }
+      all.push(...allList);
       div.appendChild(nd);
     }
+    //all node
+    let nda, nta;
+    nd = document.createElement('div');
+    nd.setAttribute('data-level', level);
+    nd.setAttribute('data-id', all.join('/'));
+    nd.classList.add('level' + level);
+    nt = document.createTextNode('All');
+    nd.appendChild(nt);
+    nd.addEventListener('click', function(e) {
+      e.stopPropagation();
+      clearMenus();
+      setupProductsAll(this.getAttribute('data-id'));
+    });
+
+    div.appendChild(nd);
+
   }
 }
 
@@ -474,12 +495,27 @@ function setupProducts(id) {
   document.getElementById('productArea').innerHTML = html;
 }
 
+function setupProductsAll(str) {
+  let li1 = str.split('/');
+  let html = '';
+  let li;
+  for (var j = 0; j < li1.length; j++) {
+    li = window.products[li1[j]];
+    for (var i = 0; i < li.length; i++) {
+      html += '<div class="productCard">' +
+        '<img src="' + li[i].img + '">' +
+        li[i].desc + '</div>';
+    }
+  }
+  document.getElementById('productArea').innerHTML = html;
+}
+
 function clearMenus() {
   let li;
   for (var i = 0; i < 2; i++) {
     li = document.getElementsByClassName('menu' + i);
     for (e of li) {
-        e.style = 'display:none;';
+      e.style = 'display:none;';
     }
   }
 }
