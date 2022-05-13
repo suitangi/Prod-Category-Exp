@@ -1,5 +1,7 @@
 window.expParam = {
 
+  productShuffle: false,
+  maxCart: 5,
   menu: {
     list: [{
       title: 'Item A',
@@ -394,22 +396,6 @@ window.expParam = {
     question: "some text",
     type: 'text',
     title: 'Game Description'
-  }, {
-    question: "text2",
-    type: 'text',
-    title: 'Game Description'
-  }, {
-    question: "text 2.223",
-    type: 'text',
-    title: 'Game Description'
-  }, {
-    question: "text 2.3333333",
-    type: 'text',
-    title: 'Game Description'
-  }, {
-    question: "text 6.2",
-    type: 'text',
-    title: 'Game Description'
-  }, ]
+  } ]
 
 }

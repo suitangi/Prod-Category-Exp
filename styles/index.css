@@ -15,6 +15,87 @@ body {
   overflow-y: auto;
 }
 
+#cartButton {
+  background: #004f87;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px grey;
+  z-index: 100;
+  transition: background 0.7s;
+}
+
+#cartButton:hover {
+  background: #658997;
+}
+
+#cartButton .material-symbols-outlined {
+  font-size: 36px !important;
+  user-select: none;
+}
+
+#cartNumber {
+  background: red;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  border-radius: 15px;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  user-select: none;
+  text-align: center;
+}
+
+#cart {
+  background: #dbdbdb;
+  width: 300px;
+  position: absolute;
+  right: 3%;
+  bottom: 10%;
+  max-height: 500px;
+  border-radius: 6px;
+  border: solid 1px #aaa;
+  opacity: 1;
+  transition: opacity 1s;
+  overflow-y: auto;
+}
+
+.cartProduct {
+  height: 40px;
+}
+
+.cartProductDesc {
+  position: relative;
+  left: 3%;
+  bottom: 5px;
+}
+
+.cartProduct img {
+  height: 80%;
+  left: 1%;
+  top: 10%;
+  position: relative;
+  border-radius: 2px;
+}
+
+.cartDelete {
+  position: absolute;
+  right: 2%;
+  transform: translate(0px, 7px);
+  cursor: pointer;
+  color: #000;
+  transition: color .5s;
+}
+
+.cartDelete:hover {
+  color: #777;
+}
+
 .productCard {
   height: 200px;
   /* border: solid 1px; */
@@ -22,8 +103,6 @@ body {
   padding: 1px;
   background: #ccc;
   opacity: 1;
-  transition: opacity .7s;
-  transition: background .7s;
   border-radius: 15px;
   cursor: pointer;
   user-select: none;
@@ -32,7 +111,7 @@ body {
 
 .productCard:hover {
   opacity: 0.8;
-  background: #aaa;
+  /* background: #aaa; */
 }
 
 .productCard img {

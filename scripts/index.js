@@ -417,11 +417,15 @@ function startTrial() {
   let menuBar = document.getElementById('menuBar');
 
   window.products = {};
+  window.cartList = [];
 
   setUpLinks(window.expParam.menu, menuBar, 0, '', []);
 
   document.addEventListener('click', function() {
     clearMenus();
+  });
+  document.getElementById('cartButton').addEventListener('click', function() {
+    toggleCart();
   });
 
   //this is a mess: don't look at this don't think about it, it works
@@ -488,11 +492,12 @@ function setupProducts(id) {
   let li = window.products[id];
   let html = '';
   for (var i = 0; i < li.length; i++) {
-    html += '<div class="productCard">' +
+    html += '<div class="productCard" data-id="' + id + '" data-index="' + i + '">' +
       '<img src="' + li[i].img + '">' +
       li[i].desc + '</div>';
   }
   document.getElementById('productArea').innerHTML = html;
+  setupProductOnclick();
 }
 
 function setupProductsAll(str) {
@@ -502,12 +507,49 @@ function setupProductsAll(str) {
   for (var j = 0; j < li1.length; j++) {
     li = window.products[li1[j]];
     for (var i = 0; i < li.length; i++) {
-      html += '<div class="productCard">' +
+      html += '<div class="productCard" data-id="' + li1[j] + '" data-index="' + i + '">' +
         '<img src="' + li[i].img + '">' +
         li[i].desc + '</div>';
     }
   }
   document.getElementById('productArea').innerHTML = html;
+  setupProductOnclick();
+}
+
+function setupProductOnclick() {
+  li = document.getElementsByClassName('productCard');
+  for (e of li) {
+    e.addEventListener('click', function() {
+      addToCart(window.products[this.getAttribute('data-id')][this.getAttribute('data-index')]);
+    })
+  }
+}
+
+function addToCart(item) {
+  if (window.cartList.length >= window.expParam.maxCart)
+    return;
+  window.cartList.push(item);
+  let nd;
+  nd = document.createElement('div');
+  nd.classList.add('cartProduct');
+  nd.setAttribute('data-index', window.cartList.length - 1);
+  nd.innerHTML = '<img src="' + item.img + '"><span class="cartProductDesc">' + item.desc + '</span><span class="cartDelete material-symbols-outlined"> delete </span>';
+
+  nd.lastElementChild.addEventListener('click', function() {
+    window.cartList.splice(parseInt(this.parentElement.getAttribute('data-index')), 1);
+    this.parentElement.remove();
+    document.getElementById('cartNumber').innerText = window.cartList.length;
+    resetIndexes();
+  });
+
+  function resetIndexes() {
+    let li = document.getElementsByClassName('cartProduct');
+    for (var i = 0; i < li.length; i++) {
+      li[i].setAttribute('data-index', i);
+    }
+  }
+  document.getElementById('cart').appendChild(nd);
+  document.getElementById('cartNumber').innerText = window.cartList.length;
 }
 
 function clearMenus() {
@@ -524,6 +566,19 @@ function clearMenus() {
 function startExp() {
   console.log("Experiment Started");
   startTrial();
+}
+
+function toggleCart() {
+  if (window.cartOpen) {
+    document.getElementById('cart').style = "opacity: 0;";
+    window.cartOpen = false;
+    setTimeout(function() {
+      document.getElementById('cart').style = "display:none; opacity: 0;";
+    }, 1000);
+  } else {
+    document.getElementById('cart').style = "";
+    window.cartOpen = true;
+  }
 }
 
 
@@ -563,8 +618,10 @@ $(document).ready(function() {
     window.expData.trialData = [];
     window.expData.proID = getParameterByName('PROLIFIC_PID');
 
+
     window.blk = 0;
 
+    window.cartOpen = false;
 
     preQuestions(0);
   }
