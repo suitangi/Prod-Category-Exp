@@ -526,8 +526,23 @@ function setupProductOnclick() {
 }
 
 function addToCart(item) {
-  if (window.cartList.length >= window.expParam.maxCart)
+  if (window.cartList.length >= window.expParam.maxCart) {
+    $.dialog({
+      title: 'Cart Full',
+      content: 'Your cart is full, please remove an item before you add another.',
+      type: 'red',
+      theme: 'light',
+      animation: 'top',
+      closeAnimation: 'top',
+      animateFromElement: false,
+      boxWidth: 'min(400px, 80%)',
+      draggable: false,
+      useBootstrap: false,
+      typeAnimated: true,
+      backgroundDismiss: true
+    });
     return;
+  }
   window.cartList.push(item);
   let nd;
   nd = document.createElement('div');
