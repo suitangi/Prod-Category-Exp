@@ -372,6 +372,14 @@ function dataToCSV() {
     }
   }
 
+  csv += '\nTime Series\n';
+  csv += 'Timestamp,Event,Details'
+  for (i = 0; i < window.expData.trialData.length; i++) {
+    csv += '"' + window.expData.trialData[i].timestamp + '","' +
+      window.expData.trialData[i].event + '","' +
+      window.expData.trialData[i].detail + '"\n';
+  }
+
   return csv;
 }
 
@@ -436,6 +444,7 @@ function startTrial() {
       nd = document.createElement('div');
       nd.setAttribute('data-level', level);
       nd.classList.add('level' + level);
+      nd.setAttribute('data-text', menuObj.list[i].title);
       nt = document.createTextNode(menuObj.list[i].title);
       nd.appendChild(nt);
       let allList = [];
@@ -452,6 +461,7 @@ function startTrial() {
             tmp.style = "";
             tmp = tmp.parentElement;
           }
+          addToTimeSeries('menu' + this.getAttribute('data-level'), this.getAttribute('data-text'));
         });
         setUpLinks(menuObj.list[i], nd2, level + 1, id + '-' + i, allList);
 
@@ -463,6 +473,7 @@ function startTrial() {
         nd.addEventListener('click', function(e) {
           e.stopPropagation();
           setupProducts(this.getAttribute('data-id'));
+          addToTimeSeries('menu' + this.getAttribute('data-level'), this.getAttribute('data-text'));
           clearMenus();
         })
       }
@@ -486,6 +497,10 @@ function startTrial() {
     div.appendChild(nd);
 
   }
+
+
+  window.timing = {};
+  window.timing.start = new Date();
 }
 
 function setupProducts(id) {
@@ -520,13 +535,25 @@ function setupProductOnclick() {
   li = document.getElementsByClassName('productCard');
   for (e of li) {
     e.addEventListener('click', function() {
-      addToCart(window.products[this.getAttribute('data-id')][this.getAttribute('data-index')]);
+      let p = window.products[this.getAttribute('data-id')][this.getAttribute('data-index')];
+      addToCart(p);
+      addToTimeSeries('cartAdd', p.desc);
     })
   }
 }
 
+function addToTimeSeries(e, d) {
+  let nd = new Date();
+  window.expData.trialData.push({
+    timestamp: nd - window.timing.start,
+    event: e,
+    detail: d
+  });
+}
+
 function addToCart(item) {
   if (window.cartList.length >= window.expParam.maxCart) {
+    addToTimeSeries('dialog', 'Cart Full')
     $.dialog({
       title: 'Cart Full',
       content: 'Your cart is full, please remove an item before you add another.',
@@ -551,7 +578,9 @@ function addToCart(item) {
   nd.innerHTML = '<img src="' + item.img + '"><span class="cartProductDesc">' + item.desc + '</span><span class="cartDelete material-symbols-outlined"> delete </span>';
 
   nd.lastElementChild.addEventListener('click', function() {
-    window.cartList.splice(parseInt(this.parentElement.getAttribute('data-index')), 1);
+    let id = parseInt(this.parentElement.getAttribute('data-index'));
+    addToTimeSeries('cartRemove', window.cartList[id].desc);
+    window.cartList.splice(id, 1);
     this.parentElement.remove();
     document.getElementById('cartNumber').innerText = window.cartList.length;
     resetIndexes();
@@ -585,17 +614,26 @@ function startExp() {
 
 function toggleCart() {
   if (window.cartOpen) {
-    document.getElementById('cart').style = "opacity: 0;";
-    window.cartOpen = false;
-    setTimeout(function() {
-      document.getElementById('cart').style = "display:none; opacity: 0;";
-    }, 1000);
+    closeCart();
   } else {
-    document.getElementById('cart').style = "";
-    window.cartOpen = true;
+    openCart();
   }
 }
 
+function openCart() {
+  document.getElementById('cart').style = "";
+  window.cartOpen = true;
+  addToTimeSeries('cartButton', 'open');
+}
+
+function closeCart() {
+  document.getElementById('cart').style = "opacity: 0;";
+  window.cartOpen = false;
+  setTimeout(function() {
+    document.getElementById('cart').style = "display:none; opacity: 0;";
+  }, 1000);
+  addToTimeSeries('cartButton', 'close');
+}
 
 //start script
 $(document).ready(function() {
